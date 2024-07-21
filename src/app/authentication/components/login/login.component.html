@@ -1,19 +1,16 @@
-<div class="background">
-    <div class="shape"></div>
-    <div class="shape"></div>
-</div>
-<form>
-    <h3>Login Here</h3>
+<form class="login-form">
+  <p class="login-text">
+    <span class="fa-stack fa-lg">
+      <i class="fa fa-circle fa-stack-2x"></i>
+      <i class="fa fa-lock fa-stack-1x"></i>
+    </span>
+  </p>
+  <input type="email" class="login-username" autofocus="true" required="true" placeholder="Email" />
+  <input type="password" class="login-password" required="true" placeholder="Password" />
+  <input type="submit" name="Login" value="Login" class="login-submit" />
+  <a routerLink="/register" ><input type="submit" name="register" value="demande" class="login-submit" /></a>
 
-    <label for="username">Username</label>
-    <input type="text" placeholder="Email or Phone" id="username">
-
-    <label for="password">Password</label>
-    <input type="password" placeholder="Password" id="password">
-
-    <button>Log In</button>
-    <div class="social">
-      <div class="go"><i class="fab fa-google"></i>  Google</div>
-      <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-    </div>
 </form>
+<a href="#" class="login-forgot-pass">forgot password?</a>
+<div class="underlay-photo"></div>
+<div class="underlay-black"></div> 
