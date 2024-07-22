@@ -1,0 +1,15 @@
+:host {
+    ::ng-deep .custom-sidebar {
+    
+        
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px; /* Adjust width as needed */
+        height: 100%;
+        z-index: 1000; 
+        box-shadow: 2px 0 5px rgba(2, 4, 23, 0.1);
+
+
+    }    
+}

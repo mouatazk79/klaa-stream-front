@@ -7,9 +7,6 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { Sidebar } from 'primeng/sidebar';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @Component({
@@ -23,11 +20,11 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 })
 export class SidebarComponent {
 
-  @ViewChild('sidebarRef') sidebarRef!: Sidebar;
-  closeCallback(e: Event): void {
-    this.sidebarRef.close(e);
-}
+//   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
+//   closeCallback(e: Event): void {
+//     this.sidebarRef.close(e);
+// }
 
-sidebarVisible: boolean = false;
+sidebarVisible: boolean = true;
 
 }
