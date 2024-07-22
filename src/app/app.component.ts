@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './authentication/components/login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +9,4 @@ import { LoginComponent } from './authentication/components/login/login.componen
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'klaa-stream-front';
 }
