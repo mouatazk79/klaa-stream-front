@@ -5,7 +5,7 @@ import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
 import { StyleClassModule } from 'primeng/styleclass';
 import { Sidebar } from 'primeng/sidebar';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 
@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-sidebar',
   standalone: true,
   imports: [
-   RouterOutlet,CommonModule, 
+   RouterOutlet,CommonModule, RouterLink,
    SidebarModule, ButtonModule, RippleModule, AvatarModule, StyleClassModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
