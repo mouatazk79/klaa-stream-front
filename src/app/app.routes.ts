@@ -7,10 +7,18 @@ import { DocumentListComponent } from './document/components/document-list/docum
 import { NotificationListComponent } from './notification/components/notification-list/notification-list.component';
 import { StaffListComponent } from './staff/components/staff-list/staff-list.component';
 import { UserListComponent } from './user/components/user-list/user-list.component';
+import { CourseListComponent } from './course/components/course-list/course-list.component';
+import { CourseDetailsComponent } from './course/components/course-details/course-details.component';
 
 export const routes: Routes = [
     {path: 'login' ,component: LoginComponent},
     {path: 'home' ,component: HomeComponent},
+    {path:'coursedetails',component:CourseDetailsComponent},
+    {path: 'courses' ,component: CourseListComponent,
+        children:[
+            {path:':id',component:CourseDetailsComponent}
+        ]
+    },
     {path: 'register' ,component: RegisterComponent},
     {path: 'sidebar' ,component: SidebarComponent},
     {path: 'documets' ,component: DocumentListComponent},
