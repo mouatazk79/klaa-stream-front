@@ -17,5 +17,7 @@ export class AuthenticationService {
   }
   logout(){
     localStorage.removeItem('Authorization');
+    window.location.reload();
+
   }
 }

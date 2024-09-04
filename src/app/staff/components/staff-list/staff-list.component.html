@@ -3,15 +3,16 @@
     <p-table
         #dt1
         [value]="staffs"
-        [globalFilterFields]="['name', 'description', 'documentType']"
+        [globalFilterFields]="['fullName', 'role', 'phoneNumber']"
         selectionMode="single"
-        [(selection)]="selectedstaffs"
         dataKey="id"
         [tableStyle]="{ 'min-width': '50rem' }"
         [rows]="5"
         [paginator]="true"
         stateStorage="session"
         stateKey="statedemo-session">
+        
+        <!-- Table Caption with Search -->
         <ng-template pTemplate="caption">
             <p-iconField iconPosition="left">
                 <p-inputIcon>
@@ -20,14 +21,15 @@
                 <input 
                     pInputText 
                     type="text" 
-                 
                     placeholder="Global Search" />
             </p-iconField>
         </ng-template>
+        
+        <!-- Table Header -->
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="fullname" style="width:25%">
-                    Full Name <p-sortIcon field="fullname" />
+                <th pSortableColumn="fullName" style="width:25%">
+                    Full Name <p-sortIcon field="fullName" />
                 </th>
                 <th pSortableColumn="age" style="width:25%">
                     Age <p-sortIcon field="age" />
@@ -35,75 +37,46 @@
                 <th pSortableColumn="role" style="width:25%">
                     Role <p-sortIcon field="role" />
                 </th>
-                <th pSortableColumn="role" style="width:25%">
-                    PhoneNumber 
+                <th pSortableColumn="phoneNumber" style="width:25%">
+                    Phone Number <p-sortIcon field="phoneNumber" />
                 </th>
                 <th style="width:25%">
                     Details 
                 </th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr [pSelectableRow]="customer">
+        
+        <!-- Table Body -->
+        <ng-template pTemplate="body" let-staff>
+            <tr [pSelectableRow]="staff">
                 <td>
-                    <span class="p-column-title">Name</span>
-                    {{ customer.name }}
+                    <span class="p-column-title">Full Name</span>
+                    {{ staff.fullName }}
                 </td>
                 <td>
-                    <span class="p-column-title">Country</span>
-                    <img 
-                        src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" 
-                        [class]="'flag flag-' + customer.country.code" 
-                        style="width: 20px" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.country.name }}</span>
+                    <span class="p-column-title">Age</span>
+                    {{ staff.age }}
                 </td>
                 <td>
-                    <span class="p-column-title">Representative</span>
-                    <img 
-                        [alt]="customer.representative.name" 
-                        src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" 
-                        width="32" 
-                        style="vertical-align: middle" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.representative.name }}</span>
+                    <span class="p-column-title">Role</span>
+                    {{ staff.role }}
                 </td>
                 <td>
-                    <span class="p-column-title">Status</span>
-                    <p-tag [value]="customer.status"  />
+                    <span class="p-column-title">Phone Number</span>
+                    {{ staff.phoneNumber }}
+                </td>
+                <td>
+                    <span class="p-column-title">Details</span>
+                    <!-- Add any details button or link here -->
+                    <button pButton type="button" label="View Details"></button>
                 </td>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr [pSelectableRow]="customer">
-                <td>
-                    <span class="p-column-title">Name</span>
-                    {{ customer.name }}
-                </td>
-                <td>
-                    <span class="p-column-title">Country</span>
-                    <img 
-                        src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" 
-                        [class]="'flag flag-' + customer.country.code" 
-                        style="width: 20px" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.country.name }}</span>
-                </td>
-                <td>
-                    <span class="p-column-title">Representative</span>
-                    <img 
-                        [alt]="customer.representative.name" 
-                        src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" 
-                        width="32" 
-                        style="vertical-align: middle" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.representative.name }}</span>
-                </td>
-                <td>
-                    <span class="p-column-title">Status</span>
-                    <p-tag [value]="customer.status"  />
-                </td>
-            </tr>
-        </ng-template>
+        
+        <!-- Empty Message -->
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td colspan="4">No customers found.</td>
+                <td colspan="5">No staff members found.</td>
             </tr>
         </ng-template>
     </p-table>
