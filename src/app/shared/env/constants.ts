@@ -1,3 +1,8 @@
-export class constants{
-    public static rootAPI='http://localhost:8090/api/v1/'
+import { Injectable } from "@angular/core";
+
+@Injectable({
+    providedIn: 'root',
+    
+  })export class Constants{
+    public readonly  rootAPI='http://localhost:8090/api/v1/'
 }
