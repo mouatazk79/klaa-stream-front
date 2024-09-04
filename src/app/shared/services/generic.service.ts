@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
-import { constants } from '../env/constants';
+import { Constants } from '../env/constants';
 export interface ServiceConfig {
   resourceEndpoint: string;
 }
@@ -16,7 +16,8 @@ export class GenericService<TModel, TDto> {
 
   constructor(
     protected httpClient: HttpClient,
-    @Inject(SERVICE_CONFIG) config: ServiceConfig
+    @Inject(SERVICE_CONFIG) config: ServiceConfig,
+    private constants:Constants
   ) {
     this.baseUrl = constants.rootAPI;
     this.resourceEndpoint = config.resourceEndpoint;
