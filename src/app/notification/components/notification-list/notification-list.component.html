@@ -5,13 +5,14 @@
         [value]="notifications"
         [globalFilterFields]="['subject', 'description']"
         selectionMode="single"
-        [(selection)]="selectedNotifications"
         dataKey="id"
         [tableStyle]="{ 'min-width': '50rem' }"
-        [rows]="5"
+        [rows]="10"
         [paginator]="true"
         stateStorage="session"
         stateKey="statedemo-session">
+        
+        <!-- Global Search Input -->
         <ng-template pTemplate="caption">
             <p-iconField iconPosition="left">
                 <p-inputIcon>
@@ -20,81 +21,41 @@
                 <input 
                     pInputText 
                     type="text" 
-                 
-                    placeholder="Global Search" />
+                    placeholder="Global Search" 
+                     />
             </p-iconField>
         </ng-template>
+
+        <!-- Table Header -->
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="subject" style="width:25%">
-                    Subject <p-sortIcon field="subject" />
+                <th pSortableColumn="subject" style="width:50%">
+                    Subject <p-sortIcon field="subject"></p-sortIcon>
                 </th>
-                <th pSortableColumn="description" style="width:25%">
-                    Description <p-sortIcon field="description" />
+                <th pSortableColumn="description" style="width:50%">
+                    Description <p-sortIcon field="description"></p-sortIcon>
                 </th>
-               </tr>
+            </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr [pSelectableRow]="customer">
+
+        <!-- Table Body -->
+        <ng-template pTemplate="body" let-notification>
+            <tr [pSelectableRow]="notification">
                 <td>
-                    <span class="p-column-title">Name</span>
-                    {{ customer.name }}
+                    <span class="p-column-title">Subject</span>
+                    {{ notification.subject }}
                 </td>
                 <td>
-                    <span class="p-column-title">Country</span>
-                    <img 
-                        src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" 
-                        [class]="'flag flag-' + customer.country.code" 
-                        style="width: 20px" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.country.name }}</span>
-                </td>
-                <td>
-                    <span class="p-column-title">Representative</span>
-                    <img 
-                        [alt]="customer.representative.name" 
-                        src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" 
-                        width="32" 
-                        style="vertical-align: middle" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.representative.name }}</span>
-                </td>
-                <td>
-                    <span class="p-column-title">Status</span>
-                    <p-tag [value]="customer.status"  />
+                    <span class="p-column-title">Description</span>
+                    {{ notification.description }}
                 </td>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr [pSelectableRow]="customer">
-                <td>
-                    <span class="p-column-title">Name</span>
-                    {{ customer.name }}
-                </td>
-                <td>
-                    <span class="p-column-title">Country</span>
-                    <img 
-                        src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" 
-                        [class]="'flag flag-' + customer.country.code" 
-                        style="width: 20px" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.country.name }}</span>
-                </td>
-                <td>
-                    <span class="p-column-title">Representative</span>
-                    <img 
-                        [alt]="customer.representative.name" 
-                        src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" 
-                        width="32" 
-                        style="vertical-align: middle" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.representative.name }}</span>
-                </td>
-                <td>
-                    <span class="p-column-title">Status</span>
-                    <p-tag [value]="customer.status"  />
-                </td>
-            </tr>
-        </ng-template>
+
+        <!-- Empty Message -->
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td colspan="4">No customers found.</td>
+                <td colspan="2">No notifications found.</td>
             </tr>
         </ng-template>
     </p-table>

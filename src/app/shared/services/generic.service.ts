@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Constants } from '../env/constants';
+import { GenericResponse } from '../models/generic-page-response';
 export interface ServiceConfig {
   resourceEndpoint: string;
 }
@@ -24,7 +25,7 @@ export class GenericService<TModel, TDto> {
   }
 
   getList() {
-    return this.httpClient.get<TModel[]>(`${this.baseUrl}${this.resourceEndpoint}`);
+    return this.httpClient.get<GenericResponse<TModel>>(`${this.baseUrl}${this.resourceEndpoint}`);
   }
 
   getById(id: number) {
