@@ -1,5 +1,5 @@
 <div  class="card flex justify-content-center" >
-    <p-sidebar #sidebarRef [(visible)]=sidebarVisible  [transitionOptions]="'0ms'" [dismissible]="false" [modal]="false" styleClass="custom-sidebar">
+    <p-sidebar #sidebarRef [(visible)]=sidebarVisible  [transitionOptions]="'0ms'" [dismissible]="false" [modal]="false" [closeOnEscape]="false" styleClass="custom-sidebar">
         <ng-template pTemplate="headless">
             <div class="flex flex-column h-full">
                 <div class="flex align-items-center justify-content-between px-4 pt-3 flex-shrink-0">
