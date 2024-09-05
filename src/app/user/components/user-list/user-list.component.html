@@ -3,15 +3,16 @@
     <p-table
         #dt1
         [value]="users"
-        [globalFilterFields]="['email', 'username','role']"
+        [globalFilterFields]="['email', 'username', 'role']"
         selectionMode="single"
-        [(selection)]="selectedusers"
         dataKey="id"
         [tableStyle]="{ 'min-width': '50rem' }"
         [rows]="5"
         [paginator]="true"
         stateStorage="session"
         stateKey="statedemo-session">
+        
+        <!-- Table Caption with Search -->
         <ng-template pTemplate="caption">
             <p-iconField iconPosition="left">
                 <p-inputIcon>
@@ -20,10 +21,11 @@
                 <input 
                     pInputText 
                     type="text" 
-                 
                     placeholder="Global Search" />
             </p-iconField>
         </ng-template>
+        
+        <!-- Table Header -->
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="email" style="width:25%">
@@ -35,69 +37,33 @@
                 <th pSortableColumn="role" style="width:25%">
                     Role <p-sortIcon field="role" />
                 </th>
-                </tr>
+            </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr [pSelectableRow]="customer">
+        
+        <!-- Table Body -->
+        <ng-template pTemplate="body" let-user>
+            <tr [pSelectableRow]="user">
                 <td>
-                    <span class="p-column-title">Name</span>
-                    {{ customer.name }}
+                    <span class="p-column-title">Email</span>
+                    {{ user.email }}
                 </td>
                 <td>
-                    <span class="p-column-title">Country</span>
-                    <img 
-                        src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" 
-                        [class]="'flag flag-' + customer.country.code" 
-                        style="width: 20px" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.country.name }}</span>
+                    <span class="p-column-title">User Name</span>
+                    {{ user.username }}
                 </td>
                 <td>
-                    <span class="p-column-title">Representative</span>
-                    <img 
-                        [alt]="customer.representative.name" 
-                        src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" 
-                        width="32" 
-                        style="vertical-align: middle" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.representative.name }}</span>
-                </td>
-                <td>
-                    <span class="p-column-title">Status</span>
-                    <p-tag [value]="customer.status"  />
+                    <span class="p-column-title">Role</span>
+                    <span *ngFor="let role of user.roles; let i = index">
+                        {{ role.name }}<span *ngIf="i < user.roles.length - 1">, </span>
+                    </span>
                 </td>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
-            <tr [pSelectableRow]="customer">
-                <td>
-                    <span class="p-column-title">Name</span>
-                    {{ customer.name }}
-                </td>
-                <td>
-                    <span class="p-column-title">Country</span>
-                    <img 
-                        src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" 
-                        [class]="'flag flag-' + customer.country.code" 
-                        style="width: 20px" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.country.name }}</span>
-                </td>
-                <td>
-                    <span class="p-column-title">Representative</span>
-                    <img 
-                        [alt]="customer.representative.name" 
-                        src="https://primefaces.org/cdn/primeng/images/demo/avatar/{{ customer.representative.image }}" 
-                        width="32" 
-                        style="vertical-align: middle" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.representative.name }}</span>
-                </td>
-                <td>
-                    <span class="p-column-title">Status</span>
-                    <p-tag [value]="customer.status"  />
-                </td>
-            </tr>
-        </ng-template>
+        
+        <!-- Empty Message -->
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td colspan="4">No customers found.</td>
+                <td colspan="3">No users found.</td>
             </tr>
         </ng-template>
     </p-table>
