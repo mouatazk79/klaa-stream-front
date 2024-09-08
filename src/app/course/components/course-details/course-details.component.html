@@ -1,28 +1,17 @@
 <div class="card xl:flex xl:justify-content-center">
     <p-orderList 
-        
-        [value]="products" 
-        [listStyle]="{ height: '35rem' ,width:'70rem' }" 
+        [value]="videoList" 
+        [listStyle]="{ height: '35rem', width: '70rem' }" 
         header="List of Videos">
-            <ng-template class="orderlist" let-product pTemplate="item">
-                <div class="flex flex-wrap p-2 align-items-center gap-3">
-                    <img 
-                        src="https://primefaces.org/cdn/primeng/images/demo/product/{{ product.image }}" 
-                        [alt]="product.name" 
-                        class="w-4rem shadow-2 flex-shrink-0 border-round" />
-                            <div class="flex-1 flex flex-column gap-2">
-                                <span class="font-bold">{{ product.name }}</span>
-                                <div class="flex align-items-center gap-2">
-                                    <i class="pi pi-tag text-sm"></i>
-                                    <span>
-                                        {{ product.category }}
-                                    </span>
-                                </div>
-                            </div>
-                    <span class="font-bold text-900">
-                        {{ '$' + product.price }}
-                    </span>
+        <ng-template let-video let-i="index" pTemplate="item">
+            <div class="flex flex-wrap p-2 align-items-center gap-3">
+                <div class="flex-1 flex flex-column gap-2">
+                    <span class="font-bold">{{ i + 1 }}. {{ video.name }}</span>
+                    <div class="flex align-items-center gap-2">
+                        <span>Duration: {{ video.duration }}</span>
+                    </div>
                 </div>
-            </ng-template>
+            </div>
+        </ng-template>
     </p-orderList>
 </div>
