@@ -10,6 +10,7 @@ import { UserListComponent } from './user/components/user-list/user-list.compone
 import { CourseListComponent } from './course/components/course-list/course-list.component';
 import { CourseDetailsComponent } from './course/components/course-details/course-details.component';
 import { DemandListComponent } from './demand/components/demand-list/demand-list.component';
+import { VideolistComponent } from './video/components/videolist/videolist.component';
 
 export const routes: Routes = [
     {path: 'login' ,component: LoginComponent},
@@ -21,6 +22,7 @@ export const routes: Routes = [
         ]
     },
     {path: 'demands' ,component: DemandListComponent},
+    {path: 'videos' ,component: VideolistComponent},
     {path: 'register' ,component: RegisterComponent},
     {path: 'sidebar' ,component: SidebarComponent},
     {path: 'documets' ,component: DocumentListComponent},
