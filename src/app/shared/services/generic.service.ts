@@ -28,7 +28,7 @@ export class GenericService<TModel, TDto> {
     return this.httpClient.get<GenericResponse<TModel>>(`${this.baseUrl}${this.resourceEndpoint}`);
   }
 
-  getById(id: number) {
+  getById(id: any) {
     return this.httpClient.get<TModel>(`${this.baseUrl}${this.resourceEndpoint}/${id}`);
   }
 

@@ -32,12 +32,14 @@ export class RegisterComponent {
     dateOfBirth: undefined,
     phoneNumber: '',
     gender: undefined,
-    email: ''
+    email: '',
+    userName: ''
   }
   constructor(private genericService:GenericService<string,RegistrationRequest>){}
 
   register(){
     console.log('register ')
+    this.registerRequest.userName = this.registerRequest.email;
    this.genericService.add(this.registerRequest).subscribe({
     next: response => {
       console.log('Registration successful', response);

@@ -1,10 +1,11 @@
-export interface RegistrationRequest {
+export interface Demand {
+    userName: string;
+    email: string;
     firstName: string;
     lastName: string;
-    userName:string;
     dateOfBirth: Date|undefined;
     phoneNumber: string;
     gender: 'MALE'|"FEMALE"|undefined;
-    email: string;
+    age: number;
   }
   

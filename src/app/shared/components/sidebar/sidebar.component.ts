@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -26,5 +26,7 @@ export class SidebarComponent {
 // }
 
 sidebarVisible: boolean = true;
+
+@Input() totalDemands:number=0;
 
 }
