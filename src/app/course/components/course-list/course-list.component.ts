@@ -5,6 +5,7 @@ import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.com
 import { CourseDetailsComponent } from "../course-details/course-details.component";
 import { GenericService, SERVICE_CONFIG } from '../../../shared/services/generic.service';
 import { Course } from '../../../shared/models/course';
+import { ImageService } from '../../services/image.service';
 
 @Component({
   selector: 'app-course-list',
@@ -24,26 +25,43 @@ export class CourseListComponent implements OnInit{
     courses: Array<Course> = [];
     isCourseClicked:boolean=false;
     selectedCourseName:string='';
-    constructor(private elementRef: ElementRef ,private genericService: GenericService<Course, Course>
-    ) {}
+    constructor(private imageService:ImageService,private elementRef: ElementRef ,private genericService: GenericService<Course, Course>
+     ) {}
   
  
     ngOnInit(): void {
       this.getCourses()
     }
-    getCourses(){
+    getCourses() {
       this.genericService.getList().subscribe({
-        next:(data)=>{
+        next: (data) => {
           this.courses = data.items || [];
           console.log(this.courses)
+          this.courses.forEach(course => {
+            if (course.imageURL) {
+              this.loadImage(course);
+            }
+          });
         },
-        error:(err)=>{
-          console.log(err)
-        
+        error: (err) => {
+          console.log(err);
         }
-      })
+      });
     }
-
+  
+    loadImage(course: Course) {
+      this.imageService.getImage(course.imageURL!).subscribe({
+        next: (blob: Blob) => {
+          const objectURL = URL.createObjectURL(blob);
+          console.log(blob); 
+          course.imageURL = objectURL; 
+        },
+        error: (err) => {
+          console.error('Error loading image:', err);
+        }
+      });
+    }
+    
     @HostListener('document:keydown.escape', ['$event'])
     onEscape(event: KeyboardEvent){
       console.log(event)
