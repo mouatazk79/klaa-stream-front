@@ -112,6 +112,10 @@
                     <a pRipple class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                         <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle" />
                         <span class="font-bold">mouataz klaa</span>
+                        <div class="card flex justify-content-center">
+                            <p-menu #menu [model]="items" [popup]="true" appendTo="body"></p-menu>
+                            <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"></p-button>
+                        </div>                        
                     </a>
                 </div>
             </div>

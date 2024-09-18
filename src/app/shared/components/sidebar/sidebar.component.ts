@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -7,26 +7,55 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { Sidebar } from 'primeng/sidebar';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
+import { DemandService } from '../../../demand/services/demand.service';
+import { MenuItem } from 'primeng/api';
+import { MenuModule } from 'primeng/menu';
 
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [
+  imports: [MenuModule,
    RouterOutlet,CommonModule, RouterLink,
-   SidebarModule, ButtonModule, RippleModule, AvatarModule, StyleClassModule],
+   SidebarModule, ButtonModule, RippleModule, AvatarModule, StyleClassModule,],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css'
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit, OnDestroy {
+  sidebarVisible: boolean = true;
+  totalDemands: number = 0;
+  private demandSubscription!: Subscription;
+  items: MenuItem[] | undefined;
 
-//   @ViewChild('sidebarRef') sidebarRef!: Sidebar;
-//   closeCallback(e: Event): void {
-//     this.sidebarRef.close(e);
-// }
+  constructor(private demandService: DemandService) {}
 
-sidebarVisible: boolean = true;
+  ngOnInit(): void {
+    this.items = [
+      {
+          label: 'Options',
+          items: [
+              {
+                  label: 'Profile',
+                  icon: 'pi pi-user'
+              },
+              {
+                label: 'Logout',
+                icon: 'pi pi-sign-out'
+            }
+          ]
+      }
+  ];
+    this.demandSubscription = this.demandService.currentDemandsCount.subscribe(count => {
+      this.totalDemands = count;
+    });
 
-@Input() totalDemands:number=0;
+    this.demandService.getDemands().subscribe();  
+  }
 
+  ngOnDestroy(): void {
+    if (this.demandSubscription) {
+      this.demandSubscription.unsubscribe();
+    }
+  }
 }
