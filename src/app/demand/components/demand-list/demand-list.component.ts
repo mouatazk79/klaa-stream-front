@@ -19,7 +19,6 @@ import { Demand } from '../../../shared/models/demand';
 })
 export class DemandListComponent {
   demands: Array<Demand> = [];
-  total:number=0;
 
 
   constructor(private demandService:DemandService){ }
@@ -32,7 +31,6 @@ export class DemandListComponent {
     this.demandService.getDemands().subscribe({
       next:(data)=>{
         this.demands = data || [];
-        this.total=this.demands.length
         console.log(this.demands)
       },
       error:(err)=>{
