@@ -9,14 +9,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { GenericService, SERVICE_CONFIG } from '../../../../shared/services/generic.service';
 import { FileUploadModule } from 'primeng/fileupload';
-
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-create-course',
   standalone: true,
-  imports: [DialogModule, ButtonModule, InputTextModule,FileUploadModule],
+  imports: [ConfirmDialogModule, ToastModule,DialogModule, ButtonModule, InputTextModule,FileUploadModule],
   templateUrl: './createcourse.component.html',
   styleUrl: './createcourse.component.scss',
   providers:[
+    ConfirmationService, MessageService
+    ,
     GenericService,
     {
       provide: SERVICE_CONFIG,
@@ -32,7 +35,7 @@ export class CreatecourseComponent {
    description: '',
    imageURL:''
  }
- constructor(private genericService:GenericService<Course,Course>){}
+ constructor(private confirmationService: ConfirmationService, private messageService: MessageService,private genericService:GenericService<Course,Course>){}
   
  addCourse(){
   this.genericService.add(this.newCourse).subscribe(
@@ -46,6 +49,21 @@ export class CreatecourseComponent {
     }
   )
  }
-
+ confirm() {
+  this.confirmationService.confirm({
+      header: 'Confirmation',
+      message: 'Please confirm to proceed moving forward.',
+      acceptIcon: 'pi pi-check mr-2',
+      rejectIcon: 'pi pi-times mr-2',
+      rejectButtonStyleClass: 'p-button-sm',
+      acceptButtonStyleClass: 'p-button-outlined p-button-sm',
+      accept: () => {
+          this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+      },
+      reject: () => {
+          this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+      }
+  });
+}
 
 }
