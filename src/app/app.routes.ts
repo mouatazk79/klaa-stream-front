@@ -11,6 +11,9 @@ import { CourseListComponent } from './course/components/course-list/course-list
 import { CourseDetailsComponent } from './course/components/course-details/course-details.component';
 import { DemandListComponent } from './demand/components/demand-list/demand-list.component';
 import { VideolistComponent } from './video/components/videolist/videolist.component';
+import { VideoplayerComponent } from './video/components/videoplayer/videoplayer.component';
+import { CreatecourseComponent } from './course/components/create-course/createcourse/createcourse.component';
+import { EditProfileComponent } from './authentication/components/profile/edit-profile/edit-profile.component';
 
 export const routes: Routes = [
     {path: 'login' ,component: LoginComponent},
@@ -21,7 +24,9 @@ export const routes: Routes = [
             {path:':id',component:CourseDetailsComponent}
         ]
     },
+    {path: 'profile' ,component: EditProfileComponent},
     {path: 'demands' ,component: DemandListComponent},
+    {path: 'videoplayer' ,component: VideoplayerComponent},
     {path: 'videos' ,component: VideolistComponent},
     {path: 'register' ,component: RegisterComponent},
     {path: 'sidebar' ,component: SidebarComponent},
@@ -29,6 +34,6 @@ export const routes: Routes = [
     {path: 'notifications' ,component: NotificationListComponent},
     {path: 'staffs' ,component: StaffListComponent},
     {path: 'users' ,component: UserListComponent},
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: '**', redirectTo: 'home', pathMatch: 'full' }
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];

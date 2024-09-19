@@ -38,6 +38,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
               {
                   label: 'Profile',
                   icon: 'pi pi-user',
+                  url:'profile'
                 
               },
               {
