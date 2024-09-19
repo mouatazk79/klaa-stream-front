@@ -9,11 +9,13 @@ import { TagModule } from 'primeng/tag';
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
 import { GenericService, SERVICE_CONFIG } from '../../../shared/services/generic.service';
 import { User } from '../../../shared/models/user';
+import { ButtonModule } from 'primeng/button';
+import { CreateUserComponent } from '../add-user/create-user/create-user.component';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [RouterOutlet,CommonModule,SidebarComponent,TableModule, InputTextModule, TagModule, IconFieldModule, InputIconModule],
+  imports: [RouterOutlet,ButtonModule,CreateUserComponent,CommonModule,SidebarComponent,TableModule, InputTextModule, TagModule, IconFieldModule, InputIconModule],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss',
   providers:[
@@ -45,4 +47,10 @@ export class UserListComponent {
     })
   }
 
+  
+  visible: boolean = false;
+
+    showDialog() {
+        this.visible = true;
+    }
 }

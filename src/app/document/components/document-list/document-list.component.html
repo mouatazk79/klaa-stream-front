@@ -1,5 +1,10 @@
 <app-sidebar class="app-sidebar"></app-sidebar>
+<app-create-document [visible]="visible"></app-create-document>
+
 <div class="card">
+    <div class="add-document-button">
+        <p-button  (onClick)="showDialog()" label="Add Document" />
+        </div>
     <p-table
         #dt1
         [value]="documents"

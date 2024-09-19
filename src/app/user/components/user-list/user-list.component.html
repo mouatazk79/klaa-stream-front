@@ -1,5 +1,11 @@
 <app-sidebar class="app-sidebar"></app-sidebar>
+<app-create-user [visible]="visible"></app-create-user>
+
 <div class="card">
+    <div class="add-user-button">
+        <p-button  (onClick)="showDialog()" label="Add User" />
+        </div>
+   
     <p-table
         #dt1
         [value]="users"

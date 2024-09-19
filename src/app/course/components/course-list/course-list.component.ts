@@ -6,11 +6,13 @@ import { CourseDetailsComponent } from "../course-details/course-details.compone
 import { GenericService, SERVICE_CONFIG } from '../../../shared/services/generic.service';
 import { Course } from '../../../shared/models/course';
 import { ImageService } from '../../services/image.service';
+import { ButtonModule } from 'primeng/button';
+import { CreatecourseComponent } from "../create-course/createcourse/createcourse.component";
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, SidebarComponent, CourseDetailsComponent],
+  imports: [RouterOutlet, CommonModule, SidebarComponent, CourseDetailsComponent, ButtonModule, CreatecourseComponent],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss',
   providers:[
@@ -85,6 +87,11 @@ export class CourseListComponent implements OnInit{
     this.isCourseClicked=true
     this.selectedCourseName=course.name;
    }
+   visible: boolean = false;
+
+    showDialog() {
+        this.visible = true;
+    }
 
 }
 

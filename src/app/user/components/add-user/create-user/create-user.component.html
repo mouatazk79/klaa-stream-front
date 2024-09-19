@@ -1,0 +1,55 @@
+<div class="card flex justify-content-center">
+    <p-dialog header="Add Demand" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+      
+    
+  
+      <!-- Email Field -->
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="email" class="font-semibold w-6rem">Email</label>
+        <input pInputText id="email" class="flex-auto" autocomplete="off" [(ngModel)]="demand.email" />
+      </div>
+  
+      <!-- First Name Field -->
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="firstName" class="font-semibold w-6rem">First Name</label>
+        <input pInputText id="firstName" class="flex-auto" autocomplete="off" [(ngModel)]="demand.firstName" />
+      </div>
+  
+      <!-- Last Name Field -->
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="lastName" class="font-semibold w-6rem">Last Name</label>
+        <input pInputText id="lastName" class="flex-auto" autocomplete="off" [(ngModel)]="demand.lastName" />
+      </div>
+  
+      <!-- Date of Birth Field -->
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="dateOfBirth" class="font-semibold w-6rem">Date of Birth</label>
+        <input pInputText id="DateOfBirth" type="date" class="w-12rem" [(ngModel)]="demand.dateOfBirth" name="dateOfBirth" />
+      </div>
+  
+      <!-- Phone Number Field -->
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="phoneNumber" class="font-semibold w-6rem">Phone</label>
+        <input pInputText id="phoneNumber" class="flex-auto" autocomplete="off" [(ngModel)]="demand.phoneNumber" />
+      </div>
+  
+      <!-- Gender Field -->
+      <div class="flex align-items-center gap-3 mb-3">
+        <label for="gender" class="font-semibold w-6rem">Gender</label>
+        <p-dropdown 
+          [options]="[{ label: 'Male', value: 'MALE' }, { label: 'Female', value: 'FEMALE' }]" 
+          [(ngModel)]="demand.gender" 
+          placeholder="Select Gender">
+        </p-dropdown>
+      </div>
+  
+   
+  
+      <!-- Action Buttons -->
+      <div class="flex justify-content-end gap-2">
+        <p-button label="Cancel" severity="secondary" (onClick)="visible = false" />
+        <p-button label="Save"  />
+      </div>
+    </p-dialog>
+  </div>
+  

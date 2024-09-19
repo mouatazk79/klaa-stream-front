@@ -10,10 +10,12 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../../../shared/components/sidebar/sidebar.component';
 import { GenericService, SERVICE_CONFIG } from '../../../shared/services/generic.service';
 import { Document } from '../../../shared/models/doument';
+import { ButtonModule } from 'primeng/button';
+import { CreateDocumentComponent } from '../add-document/create-document/create-document.component';
 @Component({
   selector: 'app-document-list',
   standalone: true,
-  imports: [RouterOutlet,CommonModule,SidebarComponent,TableModule, InputTextModule, TagModule, IconFieldModule, InputIconModule],
+  imports: [RouterOutlet,CommonModule,CreateDocumentComponent,SidebarComponent,TableModule, InputTextModule, TagModule, IconFieldModule, InputIconModule,ButtonModule],
   templateUrl: './document-list.component.html',
   styleUrl: './document-list.component.scss',
   providers:[
@@ -46,4 +48,9 @@ export class DocumentListComponent implements OnInit{
   }
   
 
+  visible: boolean = false;
+
+    showDialog() {
+        this.visible = true;
+    }
 }
