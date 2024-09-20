@@ -1,6 +1,7 @@
 export interface Document{
     name:string,
-    Description?:string,
-    documentType:'BOOK'|'ARTICLE',
+    description?:string,
+    documentType:'BOOK'|'ARTICLE'|undefined,
     documentURL:string   
+    visible:true
 }

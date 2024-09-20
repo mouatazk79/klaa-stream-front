@@ -29,6 +29,14 @@
         <label for="documentURL" class="font-semibold w-6rem">Document URL</label>
         <input pInputText id="documentURL" class="flex-auto" autocomplete="off" [(ngModel)]="document.documentURL" />
       </div>
+      <div class="flex align-items-center gap-3 mb-3">
+        <label >visible</label>
+        <p-checkbox 
+            [(ngModel)]="document.visible"
+            [binary]="true"
+            inputId="binary"
+            class="ng-invalid ng-dirty" />
+     </div>
   
       <div class="flex justify-content-end gap-2">
         <p-button label="Cancel" severity="secondary" (onClick)="visible = false" />
