@@ -13,6 +13,13 @@ export class ImageService {
   constructor(private httpClient:HttpClient,private constants:Constants) {
     this.baseURL=constants.rootAPI
    }
+   uploadCourseCover(courseName: string, file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file);  // Ensure 'file' is sent as multipart data
+  
+    return this.httpClient.post(`${this.baseURL}courses/upload-cover/` + courseName, formData, { responseType: 'blob' });
+  }
+  
 
    getImage(relativePath:string): Observable<Blob>{
     return this.httpClient.get(`${this.baseURL}courses/image` + relativePath, { responseType: 'blob' });

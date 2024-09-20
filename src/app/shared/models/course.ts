@@ -4,5 +4,6 @@ export interface Course{
     name:string,
     field:string,
     description:string,
+    visible?:boolean,
     imageURL?:string,
 }
