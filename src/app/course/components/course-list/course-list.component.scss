@@ -1,24 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
-
-.coursedetails{
+.coursedetails {
   position: absolute;
   width: 92rem;
   top: 0;
   right: 0;
   z-index: 1400;
 }
-.card{
-    display: flex;    
-    flex-direction: row;
-    flex-wrap: wrap;
-    position: absolute;
-    width: 84rem;
-     top: 0;
-     right: 0;
-   }
-.card-wrap{
+
+.card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 84rem;
+  top: 0;
+  right: 0;
+}
+
+.card-wrap {
   margin-left: 5rem;
-  margin-top:4rem ;
+  margin-top: 2rem;
   width: 220px;
   background: #fff;
   border-radius: 20px;
@@ -28,81 +28,94 @@
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
               rgba(0, 0, 0, 0.23) 0px 6px 6px;
   cursor: pointer;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
-.card-wrap:hover{
-  transform: scale(1.1);
+
+.card-wrap:hover {
+  transform: scale(1.05);
 }
-.card-header{
-  height: 200px;
+
+.card-header {
+  height: 80px; 
   width: 100%;
   background: red;
-  border-radius:100% 0% 100% 0% / 0% 50% 50% 100%;
+  border-radius: 100% 0% 100% 0% / 0% 50% 50% 100%;
   display: grid;
   place-items: center;
-
 }
 
-.card-header i{
+.card-header i {
   color: #fff;
-  font-size: 72px;
+  font-size: 60px; /* Adjusted icon size */
 }
-.card-content{
+
+.card-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 60%;
   margin: 0 auto;
+  padding: 10px 0; /* Reduced padding for a compact look */
 }
-.card-title{
+
+.card-title {
   text-align: center;
   text-transform: uppercase;
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  
+  font-size: 14px; /* Adjusted font size */
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
-.card-text{
+
+.card-text {
   text-align: center;
   font-size: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
-.card-btn{
+
+.card-btn {
   border: none;
   border-radius: 100px;
   padding: 5px 30px;
   color: #fff;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-transform: uppercase;
 }
-.card-header.one{
+
+.card-header.one {
   background: linear-gradient(to bottom left, var(--card1-gradient-color1), var(--card1-gradient-color2));
 }
-.card-header.two{
+
+.card-header.two {
   background: linear-gradient(to bottom left, var(--card2-gradient-color1), var(--card2-gradient-color2));
 }
-.card-header.three{
+
+.card-header.three {
   background: linear-gradient(to bottom left, var(--card3-gradient-color1), var(--card3-gradient-color2));
 }
-.card-header.four{
+
+.card-header.four {
   background: linear-gradient(to bottom left, var(--card4-gradient-color1), var(--card4-gradient-color2));
 }
 
-.card-btn.one{
+.card-btn.one {
   background: linear-gradient(to left, var(--card1-gradient-color1), var(--card1-gradient-color2));
 }
-.card-btn.two{
+
+.card-btn.two {
   background: linear-gradient(to left, var(--card2-gradient-color1), var(--card2-gradient-color2));
 }
-.card-btn.three{
+
+.card-btn.three {
   background: linear-gradient(to left, var(--card3-gradient-color1), var(--card3-gradient-color2));
 }
-.card-btn.four{
+
+.card-btn.four {
   background: linear-gradient(to left, var(--card4-gradient-color1), var(--card4-gradient-color2));
 }
+
 .add-course-button {
   position: relative;
   text-align: right;
   margin-bottom: 10px;
-  z-index:100;
+  z-index: 100;
 }

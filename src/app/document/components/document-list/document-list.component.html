@@ -66,7 +66,16 @@
                 </td>
                 <td>
                     <span class="p-column-title">Link</span>
-                    <a [href]="document.documentURL" target="_blank">View Document</a>
+                    <a [href]="document.documentURL" target="_blank">
+                        <p-button label="viewDetails" />
+                    </a>
+                        <p-toast />
+                        <p-confirmPopup />
+                        <p-button 
+                            (click)="confirm($event,document.id)" 
+                            label="Delete" 
+                            severity="danger" 
+                            [outlined]="true" />
                 </td>
             </tr>
         </ng-template>

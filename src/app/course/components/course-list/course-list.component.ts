@@ -8,14 +8,17 @@ import { Course } from '../../../shared/models/course';
 import { ImageService } from '../../services/image.service';
 import { ButtonModule } from 'primeng/button';
 import { CreatecourseComponent } from "../create-course/createcourse/createcourse.component";
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, SidebarComponent, CourseDetailsComponent, ButtonModule, CreatecourseComponent],
+  imports: [RouterOutlet, CommonModule,  ToastModule, ConfirmPopupModule,SidebarComponent, CourseDetailsComponent, ButtonModule, CreatecourseComponent],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss',
-  providers:[
+  providers:[ConfirmationService, MessageService,
     GenericService,
     {
       provide: SERVICE_CONFIG,
@@ -27,7 +30,7 @@ export class CourseListComponent implements OnInit{
     courses: Array<Course> = [];
     isCourseClicked:boolean=false;
     selectedCourseName:string='';
-    constructor(private imageService:ImageService,private elementRef: ElementRef ,private genericService: GenericService<Course, Course>
+    constructor( private confirmationService: ConfirmationService, private messageService: MessageService,private imageService:ImageService,private elementRef: ElementRef ,private genericService: GenericService<Course, Course>
      ) {}
   
  
@@ -92,6 +95,21 @@ export class CourseListComponent implements OnInit{
     showDialog() {
         this.visible = true;
     }
+
+    confirmDelete(event: Event) {
+      this.confirmationService.confirm({
+          target: event.target as EventTarget,
+          message: 'Do you want to delete this record?',
+          icon: 'pi pi-info-circle',
+          acceptButtonStyleClass: 'p-button-danger p-button-sm',
+          accept: () => {
+              this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 3000 });
+          },
+          reject: () => {
+              this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+          }
+      });
+}
 
 }
 

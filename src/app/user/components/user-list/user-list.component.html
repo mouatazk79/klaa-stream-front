@@ -43,6 +43,7 @@
                 <th pSortableColumn="role" style="width:25%">
                     Role <p-sortIcon field="role" />
                 </th>
+                <th  style="width:20%">Actions</th>
             </tr>
         </ng-template>
         
@@ -63,6 +64,11 @@
                         {{ role.name }}<span *ngIf="i < user.roles.length - 1">, </span>
                     </span>
                 </td>
+                <td>
+                    <p-toast />
+                    <p-confirmPopup />
+                    <p-button (click)="disactivate($event)" label="Disactivate" severity="danger" [outlined]="true" />
+            </td>
             </tr>
         </ng-template>
         

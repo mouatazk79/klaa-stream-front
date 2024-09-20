@@ -1,7 +1,11 @@
+.button-group {
+  display: flex;
+  gap: 10px; /* Adds some spacing between the buttons */
+}
 
-.card{
-    position: absolute;
-    width: 84rem;
-     top: 0;
-     right: 0;
-   }
+.card {
+  position: absolute;
+  width: 84rem;
+  top: 0;
+  right: 0;
+}

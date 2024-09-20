@@ -40,7 +40,7 @@ export class GenericService<TModel, TDto> {
     return this.httpClient.put<TModel>(`${this.baseUrl}${this.resourceEndpoint}`, dto);
   }
 
-  remove(id: number) {
+  remove(id: any) {
     return this.httpClient.delete<number>(`${this.baseUrl}${this.resourceEndpoint}/${id}`);
   }
 }

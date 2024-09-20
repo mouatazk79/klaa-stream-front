@@ -29,11 +29,14 @@
         <!-- Table Header -->
         <ng-template pTemplate="header">
             <tr>
-                <th pSortableColumn="subject" style="width:50%">
+                <th pSortableColumn="subject" style="width:20%">
                     Subject <p-sortIcon field="subject"></p-sortIcon>
                 </th>
-                <th pSortableColumn="description" style="width:50%">
+                <th pSortableColumn="description" style="width:40%">
                     Description <p-sortIcon field="description"></p-sortIcon>
+                </th>
+                <th style="width:10%">
+                    Details 
                 </th>
             </tr>
         </ng-template>
@@ -48,6 +51,10 @@
                 <td>
                     <span class="p-column-title">Description</span>
                     {{ notification.description }}
+                </td>
+                <td>
+                    <span class="p-column-title">Details</span>
+                    <p-button (onClick)="viewDetails()"  label="View Details" />
                 </td>
             </tr>
         </ng-template>

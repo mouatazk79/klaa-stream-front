@@ -11,14 +11,18 @@ import { GenericService, SERVICE_CONFIG } from '../../../shared/services/generic
 import { User } from '../../../shared/models/user';
 import { ButtonModule } from 'primeng/button';
 import { CreateUserComponent } from '../add-user/create-user/create-user.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [RouterOutlet,ButtonModule,CreateUserComponent,CommonModule,SidebarComponent,TableModule, InputTextModule, TagModule, IconFieldModule, InputIconModule],
+  imports: [RouterOutlet,ButtonModule,ToastModule, ConfirmPopupModule,CreateUserComponent,CommonModule,SidebarComponent,TableModule, InputTextModule, TagModule, IconFieldModule, InputIconModule],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.scss',
   providers:[
+    ConfirmationService, MessageService,
     GenericService,
     {
       provide: SERVICE_CONFIG,
@@ -27,8 +31,9 @@ import { CreateUserComponent } from '../add-user/create-user/create-user.compone
   ]
 })
 export class UserListComponent {
+
   users: Array<User> = [];
-  constructor( private genericService: GenericService<User, User>
+  constructor( private confirmationService: ConfirmationService, private messageService: MessageService,private genericService: GenericService<User, User>
   ) {}
 
   ngOnInit(): void {
@@ -53,4 +58,18 @@ export class UserListComponent {
     showDialog() {
         this.visible = true;
     }
+
+    disactivate(event: Event) {
+      this.confirmationService.confirm({
+          target: event.target as EventTarget,
+          message: 'Are you sure you want to proceed?',
+          icon: 'pi pi-exclamation-triangle',
+          accept: () => {
+              this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+          },
+          reject: () => {
+              this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+          }
+      });
+  }
 }
