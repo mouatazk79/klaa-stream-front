@@ -37,7 +37,7 @@ export class UserListComponent {
   getUsers(){
     this.genericService.getList().subscribe({
       next:(data)=>{
-      //  this.users = data.items || [];
+        this.users = data.items || [];
         console.log(data)
       },
       error:(err)=>{

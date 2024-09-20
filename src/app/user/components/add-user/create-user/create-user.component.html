@@ -6,31 +6,31 @@
       <!-- Email Field -->
       <div class="flex align-items-center gap-3 mb-3">
         <label for="email" class="font-semibold w-6rem">Email</label>
-        <input pInputText id="email" class="flex-auto" autocomplete="off" [(ngModel)]="demand.email" />
+        <input pInputText id="email" class="flex-auto" autocomplete="off" [(ngModel)]="registerRequest.email" />
       </div>
   
       <!-- First Name Field -->
       <div class="flex align-items-center gap-3 mb-3">
         <label for="firstName" class="font-semibold w-6rem">First Name</label>
-        <input pInputText id="firstName" class="flex-auto" autocomplete="off" [(ngModel)]="demand.firstName" />
+        <input pInputText id="firstName" class="flex-auto" autocomplete="off" [(ngModel)]="registerRequest.firstName" />
       </div>
   
       <!-- Last Name Field -->
       <div class="flex align-items-center gap-3 mb-3">
         <label for="lastName" class="font-semibold w-6rem">Last Name</label>
-        <input pInputText id="lastName" class="flex-auto" autocomplete="off" [(ngModel)]="demand.lastName" />
+        <input pInputText id="lastName" class="flex-auto" autocomplete="off" [(ngModel)]="registerRequest.lastName" />
       </div>
   
       <!-- Date of Birth Field -->
       <div class="flex align-items-center gap-3 mb-3">
         <label for="dateOfBirth" class="font-semibold w-6rem">Date of Birth</label>
-        <input pInputText id="DateOfBirth" type="date" class="w-12rem" [(ngModel)]="demand.dateOfBirth" name="dateOfBirth" />
+        <input pInputText id="DateOfBirth" type="date" class="w-12rem" [(ngModel)]="registerRequest.dateOfBirth" name="dateOfBirth" />
       </div>
   
       <!-- Phone Number Field -->
       <div class="flex align-items-center gap-3 mb-3">
         <label for="phoneNumber" class="font-semibold w-6rem">Phone</label>
-        <input pInputText id="phoneNumber" class="flex-auto" autocomplete="off" [(ngModel)]="demand.phoneNumber" />
+        <input pInputText id="phoneNumber" class="flex-auto" autocomplete="off" [(ngModel)]="registerRequest.phoneNumber" />
       </div>
   
       <!-- Gender Field -->
@@ -38,7 +38,7 @@
         <label for="gender" class="font-semibold w-6rem">Gender</label>
         <p-dropdown 
           [options]="[{ label: 'Male', value: 'MALE' }, { label: 'Female', value: 'FEMALE' }]" 
-          [(ngModel)]="demand.gender" 
+          [(ngModel)]="registerRequest.gender" 
           placeholder="Select Gender">
         </p-dropdown>
       </div>
