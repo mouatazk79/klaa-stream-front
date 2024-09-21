@@ -67,7 +67,12 @@
                 <td>
                     <p-toast />
                     <p-confirmPopup />
-                    <p-button (click)="disactivate($event)" label="Disactivate" severity="danger" [outlined]="true" />
+                    @if(user.accountNonLocked){
+                        <p-button (click)="lock($event,user.username)" label="Lock" severity="danger" [outlined]="true" />
+                    }@else {
+                        <p-button (click)="unlock($event,user.username)" label="Unlock" severity="success" [outlined]="true" />
+
+                    }
             </td>
             </tr>
         </ng-template>

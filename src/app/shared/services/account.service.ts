@@ -15,4 +15,7 @@ export class AccountService {
 
   activate(userName:string):any{
    return this.httpClient.put<null>(`${this.baseUrl}users/`+userName,null) }
+
+   lock(userName:string):any{
+    return this.httpClient.put<null>(`${this.baseUrl}users/lock/`+userName,null) }
 }

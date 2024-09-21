@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
@@ -14,6 +14,7 @@ import { CreateUserComponent } from '../add-user/create-user/create-user.compone
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { AccountService } from '../../../shared/services/account.service';
 
 @Component({
   selector: 'app-user-list',
@@ -33,7 +34,7 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
 export class UserListComponent {
 
   users: Array<User> = [];
-  constructor( private confirmationService: ConfirmationService, private messageService: MessageService,private genericService: GenericService<User, User>
+  constructor( private router:Router,private accountService:AccountService,private confirmationService: ConfirmationService, private messageService: MessageService,private genericService: GenericService<User, User>
   ) {}
 
   ngOnInit(): void {
@@ -59,17 +60,49 @@ export class UserListComponent {
         this.visible = true;
     }
 
-    disactivate(event: Event) {
+    lockAccount(userName:string){
+      this.accountService.lock(userName).subscribe({
+        next:()=>{
+          console.log('activated')
+        },
+        error:()=>{
+        
+        }
+      })
+    }
+
+    lock(event: Event,userName:string) {
       this.confirmationService.confirm({
           target: event.target as EventTarget,
           message: 'Are you sure you want to proceed?',
           icon: 'pi pi-exclamation-triangle',
           accept: () => {
+              this.lockAccount(userName);
               this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+              this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                this.router.navigate(['users']);
+              }); 
           },
           reject: () => {
               this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
           }
       });
   }
+  unlock(event: Event,userName:string) {
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Are you sure you want to proceed?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this.lockAccount(userName);
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate(['users']);
+            }); 
+        },
+        reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+        }
+    });
+}
 }

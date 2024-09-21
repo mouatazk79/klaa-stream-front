@@ -4,4 +4,6 @@ export interface User{
     email:string,
     username:string,
     roles:Array<Role>
+    accountNonLocked?:boolean
+
 }
