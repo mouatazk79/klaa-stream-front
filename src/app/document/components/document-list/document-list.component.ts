@@ -15,10 +15,11 @@ import { CreateDocumentComponent } from '../add-document/create-document/create-
 import { ToastModule } from 'primeng/toast';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { EditDocumentComponent } from '../edit-document/edit-document.component';
 @Component({
   selector: 'app-document-list',
   standalone: true,
-  imports: [RouterOutlet,CommonModule, ToastModule, ConfirmPopupModule,CreateDocumentComponent,SidebarComponent,TableModule, InputTextModule, TagModule, IconFieldModule, InputIconModule,ButtonModule],
+  imports: [RouterOutlet,CommonModule,EditDocumentComponent, ToastModule, ConfirmPopupModule,CreateDocumentComponent,SidebarComponent,TableModule, InputTextModule, TagModule, IconFieldModule, InputIconModule,ButtonModule],
   templateUrl: './document-list.component.html',
   styleUrl: './document-list.component.scss',
   providers:[ConfirmationService, MessageService,
@@ -41,7 +42,7 @@ export class DocumentListComponent implements OnInit{
     this.genericService.getList().subscribe({
       next:(data)=>{
         this.documents = data.items || [];
-        console.log(this.documents)
+        console.log(data)
       },
       error:(err)=>{
         console.log(err)
@@ -86,4 +87,18 @@ export class DocumentListComponent implements OnInit{
               this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
           }
       });
-}}
+}
+editVisible: boolean = false;
+selectedDocument:Document ={
+  id:'',
+  name: '',
+  documentType: undefined,
+  documentURL: ''
+};
+
+    showEditDialog(document:Document) {
+      this.selectedDocument=document;
+        this.editVisible = true;
+    }
+
+}

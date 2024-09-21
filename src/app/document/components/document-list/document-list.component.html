@@ -1,6 +1,6 @@
 <app-sidebar class="app-sidebar"></app-sidebar>
 <app-create-document [visible]="visible"></app-create-document>
-
+<app-edit-document [visible]="editVisible" [document]="selectedDocument"></app-edit-document>
 <div class="card">
     <div class="add-document-button">
         <p-button  (onClick)="showDialog()" label="Add Document" />
@@ -67,8 +67,9 @@
                 <td>
                     <span class="p-column-title">Link</span>
                     <a [href]="document.documentURL" target="_blank">
-                        <p-button label="viewDetails" />
+                        <p-button label="View" />
                     </a>
+                    <p-button (onClick)="showEditDialog(document)" label="Edit" />
                         <p-toast />
                         <p-confirmPopup />
                         <p-button 

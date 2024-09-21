@@ -4,5 +4,5 @@ export interface Document{
     description?:string,
     documentType:'BOOK'|'ARTICLE'|undefined,
     documentURL:string   
-    visible:true
+    visible?:true
 }
