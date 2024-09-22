@@ -5,7 +5,7 @@ import { JwtService } from '../jwt/jwt.service';
 export const authGuard: CanActivateFn = (route, state) => {
     const authService = inject(JwtService);
     const router = inject(Router);
-    if (authService.isTokenExpired()) {
+    if (authService.isTokenExpired()||authService.token==null) {
       router.navigate(['/login']);
       return false;
     }
