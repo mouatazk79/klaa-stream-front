@@ -1,10 +1,13 @@
 <div class="card xl:flex xl:justify-content-center">
+    @if (visible) {
+        <app-videoplayer></app-videoplayer>
+    }
     <p-orderList 
         [value]="videoList" 
         [listStyle]="{ height: '35rem', width: '70rem' }" 
         header="List of Videos">
         <ng-template let-video let-i="index" pTemplate="item">
-            <div class="flex flex-wrap p-2 align-items-center gap-3">
+            <div class="flex flex-wrap p-2 align-items-center gap-3" (click)="runVideo(video.name)">
                 <div class="flex-1 flex flex-column gap-2">
                     <span class="font-bold">{{ i + 1 }}. {{ video.name }}</span>
                     <div class="flex align-items-center gap-2">
