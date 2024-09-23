@@ -1,5 +1,12 @@
-<!-- videoplayer.component.html -->
-<video #videoPlayer width="640" height="360" controls>
-  <!-- The video source will be set dynamically via Angular -->
-  Your browser does not support the video tag.
-</video>
+<div class="video-container">
+  <video class="video" controls *ngIf="videoUrl">
+    <!-- Video source is dynamically set from the component -->
+    <source [src]="videoUrl" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Display a loading message or spinner while the video is being loaded -->
+  <div *ngIf="!videoUrl">
+    Loading video...
+  </div>
+</div>
