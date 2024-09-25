@@ -26,9 +26,10 @@ export class VideoplayerComponent implements OnInit {
     mediaSource.addEventListener('sourceopen', async () => {
       const sourceBuffer = mediaSource.addSourceBuffer('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
       let offset = 0;
-      const chunkSize = 1024 * 1024; // 1MB chunks
+      const chunkSize = 1024 * 1024; 
 
       while (true) {
+        
         const response = await fetch(this.videoUrl, {
           headers: {
             Range: `bytes=${offset}-${offset + chunkSize - 1}`,
