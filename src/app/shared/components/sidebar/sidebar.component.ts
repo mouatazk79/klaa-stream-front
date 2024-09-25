@@ -50,7 +50,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
               },
               {
                 label: 'Logout',
-                icon: 'pi pi-sign-out'
+                icon: 'pi pi-sign-out',
+                command:()=>{
+                  this.jwtService.logout();
+                }
             }
           ]
       }
