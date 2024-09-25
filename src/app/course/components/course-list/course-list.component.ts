@@ -11,6 +11,7 @@ import { CreatecourseComponent } from "../create-course/createcourse/createcours
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ToastModule } from 'primeng/toast';
+import { JwtService } from '../../../shared/jwt/jwt.service';
 
 @Component({
   selector: 'app-course-list',
@@ -30,12 +31,14 @@ export class CourseListComponent implements OnInit{
     courses: Array<Course> = [];
     isCourseClicked:boolean=false;
     selectedCourseName:string='';
-    constructor( private confirmationService: ConfirmationService, private messageService: MessageService,private imageService:ImageService,private elementRef: ElementRef ,private genericService: GenericService<Course, Course>
+    role='';
+    constructor(private jwtService:JwtService, private confirmationService: ConfirmationService, private messageService: MessageService,private imageService:ImageService,private elementRef: ElementRef ,private genericService: GenericService<Course, Course>
      ) {}
   
  
     ngOnInit(): void {
       this.getCourses()
+      this.role=this.jwtService.getRole() 
     }
     getCourses() {
       this.genericService.getList().subscribe({

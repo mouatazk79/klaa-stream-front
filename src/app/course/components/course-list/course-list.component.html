@@ -1,8 +1,11 @@
 <app-sidebar class="app-sidebar"></app-sidebar>
-<div class="add-course-button">
-<p-button  (onClick)="showDialog()" label="Add Course" />
-</div>
-<app-create-course [visible]="visible"></app-create-course>
+@if (role=='ADMIN') {
+  <div class="add-course-button">
+    <p-button  (onClick)="showDialog()" label="Add Course" />
+    </div>
+    <app-create-course [visible]="visible"></app-create-course>
+    
+}
 
 <div class="card">
   <!-- Check if a course is clicked -->
