@@ -14,20 +14,18 @@ export class JwtService {
   getUserName():string{
     if(this.token){
       const tokenPayload:any = jwtDecode(this.token);
-      let userName=tokenPayload.sub
+      let userName=tokenPayload.username
       return userName;
     }
     return'';
   }
   getRole():string{
-
     if(this.token){
       const tokenPayload:any = jwtDecode(this.token);
-      let userName=tokenPayload.sub
-      userName='ADMIN'
-      return userName;
+      let role=tokenPayload.authorities[0]
+      return role;
     }
-    return'ADMI';
+    return'';
   }
   
 
