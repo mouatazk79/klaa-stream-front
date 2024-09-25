@@ -16,6 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { EditDocumentComponent } from '../edit-document/edit-document.component';
+import { JwtService } from '../../../shared/jwt/jwt.service';
 @Component({
   selector: 'app-document-list',
   standalone: true,
@@ -32,11 +33,14 @@ import { EditDocumentComponent } from '../edit-document/edit-document.component'
 })
 export class DocumentListComponent implements OnInit{
   documents: Array<Document> = [];
-  constructor(private router:Router, private confirmationService: ConfirmationService, private messageService: MessageService,private genericService: GenericService<Document, Document>
+  role='';
+  constructor(private jwtService:JwtService,private router:Router, private confirmationService: ConfirmationService, private messageService: MessageService,private genericService: GenericService<Document, Document>
   ) {}
 
   ngOnInit(): void {
+    this.role=this.jwtService.getRole() 
     this.getDocuments()
+
   }
   getDocuments(){
     this.genericService.getList().subscribe({

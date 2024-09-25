@@ -1,10 +1,15 @@
 <app-sidebar class="app-sidebar"></app-sidebar>
-<app-create-document [visible]="visible"></app-create-document>
-<app-edit-document [visible]="editVisible" [document]="selectedDocument"></app-edit-document>
+@if (role=='ADMIN') {
+    <app-create-document [visible]="visible"></app-create-document>
+    <app-edit-document [visible]="editVisible" [document]="selectedDocument"></app-edit-document>    
+}
 <div class="card">
-    <div class="add-document-button">
-        <p-button  (onClick)="showDialog()" label="Add Document" />
-        </div>
+    @if (role=='ADMIN') {
+        <div class="add-document-button">
+            <p-button  (onClick)="showDialog()" label="Add Document" />
+            </div>  
+    }
+
     <p-table
         #dt1
         [value]="documents"
@@ -69,7 +74,8 @@
                     <a [href]="document.documentURL" target="_blank">
                         <p-button label="View" />
                     </a>
-                    <p-button (onClick)="showEditDialog(document)" label="Edit" />
+                    @if (role=='ADMIN') {
+                        <p-button (onClick)="showEditDialog(document)" label="Edit" />
                         <p-toast />
                         <p-confirmPopup />
                         <p-button 
@@ -77,6 +83,8 @@
                             label="Delete" 
                             severity="danger" 
                             [outlined]="true" />
+                    }
+                   
                 </td>
             </tr>
         </ng-template>

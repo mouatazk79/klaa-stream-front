@@ -1,16 +1,17 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { AvatarModule } from 'primeng/avatar';
 import { StyleClassModule } from 'primeng/styleclass';
-import { Sidebar } from 'primeng/sidebar';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { DemandService } from '../../../demand/services/demand.service';
 import { MenuItem } from 'primeng/api';
 import { MenuModule } from 'primeng/menu';
+import { JwtService } from '../../jwt/jwt.service';
+import { AccountService } from '../../services/account.service';
 
 
 @Component({
@@ -20,15 +21,21 @@ import { MenuModule } from 'primeng/menu';
    RouterOutlet,CommonModule, RouterLink,
    SidebarModule, ButtonModule, RippleModule, AvatarModule, StyleClassModule,],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrl: './sidebar.component.css',
+ 
 })
 export class SidebarComponent implements OnInit, OnDestroy {
   sidebarVisible: boolean = true;
   totalDemands: number = 0;
+  fullName='';
   private demandSubscription!: Subscription;
   items: MenuItem[] | undefined;
+   role='';
 
-  constructor(private demandService: DemandService) {}
+  
+
+  constructor(private accountService:AccountService,private jwtService:JwtService,private demandService: DemandService) {}
+
 
   ngOnInit(): void {
     this.items = [
@@ -48,13 +55,30 @@ export class SidebarComponent implements OnInit, OnDestroy {
           ]
       }
   ];
+  this.role=this.jwtService.getRole() 
+  if(this.role=='ADMIN'){
     this.demandSubscription = this.demandService.currentDemandsCount.subscribe(count => {
       this.totalDemands = count;
     });
 
-    this.demandService.getDemands().subscribe();  
+    this.demandService.getDemands().subscribe(); 
+  }
+   
   }
 
+  userName=this.jwtService.getUserName();
+
+  getFullName(){
+    this.accountService.getStaffByUserName(this.userName).subscribe({
+      next:(data)=>{
+        this.fullName=data.fullName
+      },
+      error:(err)=>{
+
+
+      }
+    })
+  }
   ngOnDestroy(): void {
     if (this.demandSubscription) {
       this.demandSubscription.unsubscribe();

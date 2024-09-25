@@ -12,13 +12,22 @@ export class JwtService {
   constructor(private router:Router,private jwtHelper:JwtHelperService) { }
 
   getUserName():string{
-
     if(this.token){
       const tokenPayload:any = jwtDecode(this.token);
-      const userName=tokenPayload.sub
+      let userName=tokenPayload.sub
       return userName;
     }
     return'';
+  }
+  getRole():string{
+
+    if(this.token){
+      const tokenPayload:any = jwtDecode(this.token);
+      let userName=tokenPayload.sub
+      userName='ADMIN'
+      return userName;
+    }
+    return'ADMI';
   }
   
 
