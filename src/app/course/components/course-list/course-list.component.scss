@@ -1,34 +1,31 @@
-.coursedetails {
+.courses-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+  position: relative;
+  padding: 10px;
+}
+
+.course-details {
   position: absolute;
-  width: 92rem;
   top: 0;
   right: 0;
+  width: 100%;
   z-index: 1400;
 }
 
-.card {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: absolute;
-  width: 84rem;
-  top: 0;
-  right: 0;
-}
-
 .card-wrap {
-  margin-left: 5rem;
-  margin-top: 2rem;
-  width: 220px;
+  margin: 1rem;
+  width: 300px; /* Adjusted for better mobile view */
   background: #fff;
   border-radius: 20px;
   border: 5px solid #fff;
   overflow: hidden;
-  color: var(--color-text);
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
               rgba(0, 0, 0, 0.23) 0px 6px 6px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
 }
 
 .card-wrap:hover {
@@ -38,84 +35,72 @@
 .card-header {
   height: 80px; 
   width: 100%;
-  background: red;
   border-radius: 100% 0% 100% 0% / 0% 50% 50% 100%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-header i {
   color: #fff;
-  font-size: 60px; /* Adjusted icon size */
+  font-size: 40px;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
-  margin: 0 auto;
-  padding: 10px 0; /* Reduced padding for a compact look */
+  text-align: center;
+  padding: 10px;
+}
+
+.course-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
 .card-title {
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 14px; /* Adjusted font size */
-  margin-top: 5px;
-  margin-bottom: 10px;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
 }
 
 .card-text {
-  text-align: center;
-  font-size: 12px;
-  margin-bottom: 10px;
-}
-
-.card-btn {
-  border: none;
-  border-radius: 100px;
-  padding: 5px 30px;
-  color: #fff;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-.card-header.one {
-  background: linear-gradient(to bottom left, var(--card1-gradient-color1), var(--card1-gradient-color2));
-}
-
-.card-header.two {
-  background: linear-gradient(to bottom left, var(--card2-gradient-color1), var(--card2-gradient-color2));
-}
-
-.card-header.three {
-  background: linear-gradient(to bottom left, var(--card3-gradient-color1), var(--card3-gradient-color2));
-}
-
-.card-header.four {
-  background: linear-gradient(to bottom left, var(--card4-gradient-color1), var(--card4-gradient-color2));
-}
-
-.card-btn.one {
-  background: linear-gradient(to left, var(--card1-gradient-color1), var(--card1-gradient-color2));
-}
-
-.card-btn.two {
-  background: linear-gradient(to left, var(--card2-gradient-color1), var(--card2-gradient-color2));
-}
-
-.card-btn.three {
-  background: linear-gradient(to left, var(--card3-gradient-color1), var(--card3-gradient-color2));
-}
-
-.card-btn.four {
-  background: linear-gradient(to left, var(--card4-gradient-color1), var(--card4-gradient-color2));
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .add-course-button {
-  position: relative;
-  text-align: right;
-  margin-bottom: 10px;
-  z-index: 100;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+@media (max-width: 768px) {
+  .card-wrap {
+    width: 90%;
+  }
+
+  .course-details {
+    width: 100%;
+  }
+
+  .add-course-button {
+    right: 10px;
+    top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .card-text {
+    font-size: 0.8rem;
+  }
+
+  .card-header i {
+    font-size: 30px;
+  }
 }

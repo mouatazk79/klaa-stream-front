@@ -1,6 +1,6 @@
 <app-sidebar class="app-sidebar"></app-sidebar>
 @if (role=='ADMIN') {
-    <app-create-document [visible]="visible"></app-create-document>
+    <app-create-document [visible]="visible" (visibleEvent)="eventHandler($event)"></app-create-document>
     <app-edit-document [visible]="editVisible" [document]="selectedDocument"></app-edit-document>    
 }
 <div class="card">

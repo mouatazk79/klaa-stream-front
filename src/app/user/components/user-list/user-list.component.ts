@@ -105,4 +105,8 @@ export class UserListComponent {
         }
     });
 }
+eventHandler(newValue: boolean){
+  console.log(newValue)
+  this.visible = newValue;
+}
 }

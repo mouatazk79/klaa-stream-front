@@ -1,32 +1,31 @@
 <app-sidebar class="app-sidebar"></app-sidebar>
-@if (role=='ADMIN') {
+
+@if (role == 'ADMIN') {
   <div class="add-course-button">
-    <p-button  (onClick)="showDialog()" label="Add Course" />
-    </div>
-    <app-create-course [visible]="visible"></app-create-course>
-    
-}
-
-<div class="card">
-  <!-- Check if a course is clicked -->
-   @if (isCourseClicked) {
-    <div >
-      <app-course-details [courseName]="selectedCourseName" class="coursedetails"></app-course-details>
-    </div>  
-   }
-
-  @for ( course of courses; track course) {
-  <div class="card-wrap" (click)="onCourseClick(course)">
-    <div class="card-header one">
-      <i class="fas fa-code"></i> 
-    </div>
-    <div class="card-content">
-      <img [src]="course.imageURL" alt="{{ course.name }}" class="course-image" />
-      <h1 class="card-title">{{ course.name }}</h1>
-      <h2 class="card-text">{{ course.field }}</h2>
-      <p class="card-text">{{ course.description }}</p>
-    </div>
+    <p-button (onClick)="showDialog()" label="Add Course"></p-button>
   </div>
+  <app-create-course [visible]="visible" (visibleEvent)="eventHandler($event)"></app-create-course>
 }
 
+<div class="courses-container">
+  <!-- Check if a course is clicked -->
+  @if (isCourseClicked) {
+    <div class="course-details">
+      <app-course-details [courseName]="selectedCourseName"></app-course-details>
+    </div>  
+  }
+
+  @for (course of courses; track course) {
+    <div class="card-wrap" (click)="onCourseClick(course)">
+      <div class="card-header one">
+        <i class="fas fa-code"></i> 
+      </div>
+      <div class="card-content">
+        <img [src]="course.imageURL" alt="{{ course.name }}" class="course-image" />
+        <h1 class="card-title">{{ course.name }}</h1>
+        <h2 class="card-text">{{ course.field }}</h2>
+        <p class="card-text">{{ course.description }}</p>
+      </div>
+    </div>
+  }
 </div>

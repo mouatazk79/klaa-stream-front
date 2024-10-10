@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -31,6 +31,7 @@ import { Router } from '@angular/router';
 })
 export class CreateUserComponent {
   @Input() visible=false;
+  @Output() visibleEvent:EventEmitter<boolean>  = new EventEmitter<boolean>();
   registerRequest:RegistrationRequest={
     firstName: '',
     lastName: '',
@@ -74,8 +75,30 @@ export class CreateUserComponent {
             });  
         },
         reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
-        }
+          this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+          this.visible=false
+          console.log(this.visible)
+          this.visibleEvent.emit(this.visible)     
+           }
     });
+  }
+
+  onCancel() {
+    this.reject();
+  }
+  
+  onDialogHide() {
+    this.reject();
+  }
+  
+  reject() {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Rejected',
+      detail: 'You have rejected',
+      life: 3000
+    });
+    this.visible = false;
+    this.visibleEvent.emit(this.visible);
   }
 }

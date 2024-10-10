@@ -1,49 +1,82 @@
 <div class="card flex justify-content-center">
-<p-dialog header="Add Course" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
- <!-- Name Field -->
- <div class="flex align-items-center gap-3 mb-3">
-    <label for="name" class="font-semibold w-6rem">Name</label>
-    <input pInputText id="name" class="flex-auto" autocomplete="off" [(ngModel)]="newCourse.name" />
-  </div>
+  <p-dialog
+    header="Add Course"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '25rem' }"
+    (onHide)="onDialogHide()"
+  >
+    <!-- Name Field -->
+    <div class="flex align-items-center gap-3 mb-3">
+      <label for="name" class="font-semibold w-6rem">Name</label>
+      <input
+        pInputText
+        id="name"
+        class="flex-auto"
+        autocomplete="off"
+        [(ngModel)]="newCourse.name"
+      />
+    </div>
 
-  <!-- Field Field -->
-  <div class="flex align-items-center gap-3 mb-3">
-    <label for="field" class="font-semibold w-6rem">Field</label>
-    <input pInputText id="field" class="flex-auto" autocomplete="off" [(ngModel)]="newCourse.field" />
-  </div>
+    <!-- Field Field -->
+    <div class="flex align-items-center gap-3 mb-3">
+      <label for="field" class="font-semibold w-6rem">Field</label>
+      <input
+        pInputText
+        id="field"
+        class="flex-auto"
+        autocomplete="off"
+        [(ngModel)]="newCourse.field"
+      />
+    </div>
 
-  <!-- Description Field -->
-  <div class="flex align-items-center gap-3 mb-3">
-    <label for="description" class="font-semibold w-6rem">Description</label>
-    <textarea pInputTextarea id="description" class="flex-auto" [(ngModel)]="newCourse.description"></textarea>
-  </div>
-  <div class="flex align-items-center gap-3 mb-3">
-    <label >visible</label>
-    <p-checkbox 
+    <!-- Description Field -->
+    <div class="flex align-items-center gap-3 mb-3">
+      <label for="description" class="font-semibold w-6rem">Description</label>
+      <textarea
+        pInputTextarea
+        id="description"
+        class="flex-auto"
+        [(ngModel)]="newCourse.description"
+      ></textarea>
+    </div>
+
+    <div class="flex align-items-center gap-3 mb-3">
+      <label>Visible</label>
+      <p-checkbox
         [(ngModel)]="newCourse.visible"
         [binary]="true"
         inputId="binary"
-        class="ng-invalid ng-dirty" />
- </div>
+        class="ng-invalid ng-dirty"
+      ></p-checkbox>
+    </div>
 
- <div class="flex align-items-center gap-3 mb-5">
-  <label for="image" class="font-semibold w-6rem">Image</label>
-  <p-fileUpload name="file" mode="basic" accept="image/*" maxFileSize="10000000" (onSelect)="onFileSelected($event)" auto="false" />
-</div>
+    <div class="flex align-items-center gap-3 mb-5">
+      <label for="image" class="font-semibold w-6rem">Image</label>
+      <p-fileUpload
+        name="file"
+        mode="basic"
+        accept="image/*"
+        maxFileSize="10000000"
+        (onSelect)="onFileSelected($event)"
+        auto="false"
+      ></p-fileUpload>
+    </div>
 
-
-  <div class="flex justify-content-end gap-2">
-      <p-button label="Cancel" severity="secondary" (onClick)="visible = false" />
-      <p-toast />
+    <div class="flex justify-content-end gap-2">
+      <p-button label="Cancel" severity="secondary" (onClick)="onCancel()" />
+      <p-toast></p-toast>
       <p-confirmDialog>
-          <ng-template pTemplate="message" let-message>
-              <div class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
-                  <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
-                  <p>{{ message.message }}</p>
-              </div>
-          </ng-template>
+        <ng-template pTemplate="message" let-message>
+          <div
+            class="flex flex-column align-items-center w-full gap-3 border-bottom-1 surface-border"
+          >
+            <i class="pi pi-exclamation-circle text-6xl text-primary-500"></i>
+            <p>{{ message.message }}</p>
+          </div>
+        </ng-template>
       </p-confirmDialog>
       <p-button (onClick)="confirm()" label="Save" />
-  </div>
-</p-dialog>
+    </div>
+  </p-dialog>
 </div>

@@ -113,6 +113,9 @@ export class CourseListComponent implements OnInit{
           }
       });
 }
-
+eventHandler(newValue: boolean){
+  console.log(newValue)
+  this.visible = newValue;
+}
 }
 

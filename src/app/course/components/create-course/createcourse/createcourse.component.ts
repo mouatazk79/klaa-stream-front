@@ -33,6 +33,7 @@ import { catchError, map, Observable, of, throwError } from 'rxjs';
 })
 export class CreatecourseComponent {
  @Input() visible=false;
+ @Output() visibleEvent:EventEmitter<boolean>  = new EventEmitter<boolean>();
  selectedFile: File | undefined;
  newCourse:Course={
    name: '',
@@ -88,12 +89,32 @@ uploadCover(courseId: string): Observable<any> {
           this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
             this.router.navigate(['courses']);
           });      
-
         },
       reject: () => {
           this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+          this.visible=false
+          console.log(this.visible)
+          this.visibleEvent.emit(this.visible)
       }
   });
+}
+onCancel() {
+  this.reject();
+}
+
+onDialogHide() {
+  this.reject();
+}
+
+reject() {
+  this.messageService.add({
+    severity: 'error',
+    summary: 'Rejected',
+    detail: 'You have rejected',
+    life: 3000
+  });
+  this.visible = false;
+  this.visibleEvent.emit(this.visible);
 }
 
 }

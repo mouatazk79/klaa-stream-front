@@ -105,4 +105,8 @@ selectedDocument:Document ={
         this.editVisible = true;
     }
 
+    eventHandler(newValue: boolean){
+      console.log(newValue)
+      this.visible = newValue;
+    }
 }

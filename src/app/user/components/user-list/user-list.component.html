@@ -1,5 +1,5 @@
 <app-sidebar class="app-sidebar"></app-sidebar>
-<app-create-user [visible]="visible"></app-create-user>
+<app-create-user [visible]="visible" (visibleEvent)="eventHandler($event)"></app-create-user>
 
 <div class="card">
     <div class="add-user-button">
