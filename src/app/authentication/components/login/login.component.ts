@@ -32,7 +32,7 @@ export class LoginComponent {
         this.router.navigate(['courses']);
       },
       error: (err) => {
-        console.log('errrrrr'+err)
+        console.log('error'+err)
        
     }})
     console.log(this.authRequest)

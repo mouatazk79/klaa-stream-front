@@ -12,15 +12,15 @@ import { VideolistComponent } from './video/components/videolist/videolist.compo
 import { EditProfileComponent } from './authentication/components/profile/edit-profile/edit-profile.component';
 import { authGuard } from './shared/guard/auth.guard';
 import { VideoplayerComponent } from './video/components/videoplayer/videoplayer.component';
+import { CourseResolverService } from './shared/resolver/course-resolver-service.service';
 
 const publicRoutes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'videoplayer', component: VideoplayerComponent },
-
   ];
   const protectedRoutes: Routes = [
-    { path: 'courses', component: CourseListComponent },
+    { path: 'videoplayer', component: VideoplayerComponent },
+    { path: 'courses', component: CourseListComponent,resolve: {coursesData:CourseResolverService} },
     { path: 'coursedetails', component: CourseDetailsComponent },
     { path: 'documents', component: DocumentListComponent },
     { path: 'demands', component: DemandListComponent },
@@ -32,7 +32,7 @@ const publicRoutes: Routes = [
   ];
   const guardedRoutes = protectedRoutes.map(route => ({
     ...route,
-    canActivate: [authGuard]
+    // canActivate: [authGuard]
   }));
   export const routes: Routes = [
     ...publicRoutes,

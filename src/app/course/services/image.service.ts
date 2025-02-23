@@ -15,7 +15,7 @@ export class ImageService {
    }
    uploadCourseCover(courseName: string, file: File): Observable<any> {
     const formData: FormData = new FormData();
-    formData.append('file', file);  // Ensure 'file' is sent as multipart data
+    formData.append('file', file);  
   
     return this.httpClient.post(`${this.baseURL}courses/upload-cover/` + courseName, formData, { responseType: 'blob' });
   }
