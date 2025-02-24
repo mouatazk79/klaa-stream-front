@@ -35,7 +35,6 @@ export class LoginComponent {
         console.log('error'+err)
        
     }})
-    console.log(this.authRequest)
   }
 
 }

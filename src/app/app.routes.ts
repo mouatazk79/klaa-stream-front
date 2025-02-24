@@ -12,7 +12,7 @@ import { VideolistComponent } from './video/components/videolist/videolist.compo
 import { EditProfileComponent } from './authentication/components/profile/edit-profile/edit-profile.component';
 import { authGuard } from './shared/guard/auth.guard';
 import { VideoplayerComponent } from './video/components/videoplayer/videoplayer.component';
-import { CourseResolverService } from './shared/resolver/course-resolver-service.service';
+import { GenericResolverService } from './shared/resolver/genericresolver.service';
 
 const publicRoutes: Routes = [
     { path: 'login', component: LoginComponent },
@@ -20,13 +20,19 @@ const publicRoutes: Routes = [
   ];
   const protectedRoutes: Routes = [
     { path: 'videoplayer', component: VideoplayerComponent },
-    { path: 'courses', component: CourseListComponent,resolve: {coursesData:CourseResolverService} },
-    { path: 'coursedetails', component: CourseDetailsComponent },
-    { path: 'documents', component: DocumentListComponent },
+    { path: 'courses', component: CourseListComponent },
+    {
+      path: 'coursedetails',
+      loadComponent: () =>
+        import('./course/components/course-details/course-details.component').then(
+          m => m.CourseDetailsComponent
+        )
+    },   
+    { path: 'documents', component: DocumentListComponent},
     { path: 'demands', component: DemandListComponent },
     { path: 'staffs', component: StaffListComponent },
     { path: 'users', component: UserListComponent },
-    { path: 'notifications', component: NotificationListComponent },
+    { path: 'notifications', component: NotificationListComponent},
     { path: 'videos', component: VideolistComponent },
     { path: 'profile', component: EditProfileComponent }
   ];
@@ -34,9 +40,17 @@ const publicRoutes: Routes = [
     ...route,
     // canActivate: [authGuard]
   }));
+
+  const resolvedRoutes = guardedRoutes.map(route => ({
+    ...route,
+    resolve: {
+      ...route.resolve,
+      data: GenericResolverService
+    },  }));
+
   export const routes: Routes = [
     ...publicRoutes,
-    ...guardedRoutes,
+    ...resolvedRoutes,
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: '**', redirectTo: 'login', pathMatch: 'full' }
   ];

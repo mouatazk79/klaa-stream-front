@@ -20,6 +20,7 @@ export const appConfig: ApplicationConfig = {
         })
       ]),
       { provide: SERVICE_CONFIG, useValue: { resourceEndpoint: 'courses' } },
+      { provide: SERVICE_CONFIG, useValue: { resourceEndpoint: 'documents' } },
 
   ]
 };
